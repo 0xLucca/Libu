@@ -1,9 +1,5 @@
-import HeroTitle from '../components/home/HeroTitle';
+import Nav from '../components/Nav';
 
 export default function Home() {
-  return (
-    <div>
-      <HeroTitle />
-    </div>
-  );
+  return <Nav />;
 }
