@@ -12,7 +12,7 @@ const Nav = () => {
       <div className="h-fit m-auto">
         <Link href="/places">places</Link>
       </div>
-      <div className="h-fit m-auto">{/*<ConnectButton />*/}</div>
+      <div className="h-fit m-auto">connect wallet{/*<ConnectButton />*/}</div>
     </div>
   );
 };
