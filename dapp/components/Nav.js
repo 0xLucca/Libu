@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 
-//import { ConnectButton } from '@rainbow-me/rainbowkit';
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 const Nav = () => {
   return (
@@ -12,7 +12,9 @@ const Nav = () => {
       <div className="h-fit m-auto">
         <Link href="/places">places</Link>
       </div>
-      <div className="h-fit m-auto">connect wallet{/*<ConnectButton />*/}</div>
+      <div className="h-fit m-auto">
+        <ConnectButton />
+      </div>
     </div>
   );
 };
