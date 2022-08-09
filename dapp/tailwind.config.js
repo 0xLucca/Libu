@@ -8,9 +8,10 @@ module.exports = {
     extend: {
       colors: {
         libuGreen: '#51FDED',
-        libuPurple: '#6B1AF6',
         libuDarkPurple: '#260259',
-        libuPink: '#FE6BC2',
+        libuBlue: '#0090C1',
+        libuWhite: '#FCF7F8',
+        libuBlack: '#363732',
       },
       height: {
         128: '32rem',
@@ -32,6 +33,7 @@ module.exports = {
       },
       fontFamily: {
         inter: ['Inter'],
+        sora: ['Sora'],
       },
       keyframes: {
         wiggle: {
