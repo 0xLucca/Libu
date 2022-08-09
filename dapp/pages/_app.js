@@ -4,12 +4,11 @@ import {
   RainbowKitProvider,
   getDefaultWallets,
   darkTheme,
+  Theme,
 } from '@rainbow-me/rainbowkit';
 import { chain, configureChains, createClient, WagmiConfig } from 'wagmi';
 import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { publicProvider } from 'wagmi/providers/public';
-
-import Head from 'next/head';
 
 const { chains, provider, webSocketProvider } = configureChains(
   [chain.mainnet, chain.polygon, chain.rinkeby],
@@ -34,6 +33,14 @@ const wagmiClient = createClient({
   provider,
   webSocketProvider,
 });
+
+/*
+const myCustomTheme: Theme = {
+  colors: {
+    accentColor: '#51FDED',
+  },
+};
+*/
 
 function MyApp({ Component, pageProps }) {
   return (

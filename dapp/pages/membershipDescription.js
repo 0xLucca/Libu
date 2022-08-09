@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import Nav from '../components/Nav';
+import Nav from '../components/generals/Nav';
+import Footer from '../components/generals/Footer';
 import NFTDesc from '../components/NFTDesc';
 
 const ticketDesc = () => {
@@ -17,9 +18,10 @@ const ticketDesc = () => {
   };
 
   return (
-    <div>
+    <div className="bg-libuBlack min-h-screen flex flex-col justify-between">
       <Nav />
       <NFTDesc nft={thisNFT} />
+      <Footer />
     </div>
   );
 };

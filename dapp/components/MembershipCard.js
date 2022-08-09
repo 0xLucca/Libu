@@ -4,75 +4,64 @@ import Image from 'next/image';
 
 const MembershipCard = ({ nft }) => {
   return (
-    <Link
-      href={`/nftDesc?address=${nft.address}&name=${nft.name}&expirationDuration=${nft.expirationDuration}&creationBlock=${nft.creationBlock}&tokenAddress=${nft.tokenAddress}&price=${nft.price}`}
-    >
-      <div
-        className="
-        m-auto 
-        xl:my-5
-        lg:my-4
-        md:my-3
-        my-2
+    <div
+      className="
         cursor-pointer
-        "
-      >
-        <div
-          className="
+        mx-auto
+        my-6
         w-40
-        h-60
         md:w-52
-        md:h-80
-        rounded-md 
-        shadow-md 
-        overflow-hidden 
+        rounded-lg 
+        shadow-lg 
         duration-200 
         hover:drop-shadow-xl
         border
-        border-libuWhite
+        border-libuGreen
+        flex
+        flex-col
         "
-        >
-          <div className="w-full h-full relative">
+    >
+      <Link
+        href={`/membershipDescription?address=${nft.address}&name=${nft.name}&expirationDuration=${nft.expirationDuration}&creationBlock=${nft.creationBlock}&tokenAddress=${nft.tokenAddress}&price=${nft.price}`}
+      >
+        <div className="">
+          <div className="h-52 bg-libuWhite3 mx-1 mt-1 rounded">
             <Image
               src=""
               alt=""
               className="w-full h-full object-center object-cover"
             />
-            {/*<div className="absolute rounded-md inset-x-0 bottom-0 bg-gradient-to-t from-libuBlue w-full h-1/2"></div>*/}
-            <div className="absolute inset-x-0 bottom-0">
-              <div className="rounded bg-libuWhite m-1 p-1 text-libuBlack">
-                <h3 className="font-bold font-inter text-card-title truncate">
-                  {nft.name}
-                </h3>
-                <p className="font-sora break-all hidden md:block text-card-text leading-3 my-auto h-6 overflow-auto">
-                  desc
-                </p>
-              </div>
-              <div className="flex">
-                <div
-                  className="
-                  flex 
-                  shadow-md 
-                  rounded 
-                  bg-libuDarkPurple
-                  hover:bg-libuGreen
-                  text-libuWhite
-                  hover:text-libuDarkPurple
-                  h-10 
-                  w-full 
-                  mx-1 
-                  mb-1"
-                >
-                  <div className="font-bold font-inter m-auto text-center text-xs md:text-left">
-                    {nft.price} POL
-                  </div>
-                </div>
-              </div>
-            </div>
+          </div>
+          <div className="mx-1 p-1">
+            <h3 className="text-lg font-bold font-inter text-libuWhite truncate">
+              {nft.name}
+            </h3>
+            <p className="text-libuWhite2 font-sora break-all hidden md:block text-card-text leading-3 my-auto h-6 overflow-auto">
+              desc
+            </p>
           </div>
         </div>
+      </Link>
+
+      <div className="flex m-1">
+        <div
+          className="
+                  flex
+                  rounded
+                  bg-white
+                  text-libuBlack
+                  h-10 
+                  w-9/12"
+        >
+          <div className="font-bold font-inter m-auto text-center text-xs md:text-left">
+            {nft.price.slice(0, 2)} POL
+          </div>
+        </div>
+        <div className="w-3/12 rounded ml-1 h-10 hover:bg-libuBlue bg-libuGreen hover:text-libuWhite flex items-center font-inter font-bold justify-center">
+          +
+        </div>
       </div>
-    </Link>
+    </div>
   );
 };
 

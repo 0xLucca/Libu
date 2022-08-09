@@ -10,56 +10,51 @@ const LoadingMembershipCard = () => {
       key={membership}
       className="
         animate-pulse
-        m-auto 
-        xl:my-5
-        lg:my-4
-        md:my-3
-        my-2
-        "
-    >
-      <div
-        className="
+        select-none
+        mx-auto
+        my-6
         w-40
-        h-60
         md:w-52
-        md:h-80
-        rounded-md 
-        shadow-md 
-        overflow-hidden 
+        rounded-lg 
+        shadow-lg 
         duration-200 
         hover:drop-shadow-xl
+        border
+        border-libuWhite3
+        flex
+        flex-col
         "
-      >
-        <div className="w-full h-full relative">
+    >
+      <div className="">
+        <div className="h-52 bg-libuWhite3 mx-1 mt-1 rounded">
           <Image
             src=""
             alt=""
             className="w-full h-full object-center object-cover"
           />
-          <div className="absolute rounded-md inset-x-0 bottom-0 bg-gradient-to-t from-libuBlack w-full h-1/2"></div>
-          <div className="absolute inset-x-0 bottom-0">
-            <div className="rounded bg-libuWhite m-1 p-1 text-libuBlack">
-              <h3 className="font-bold font-inter text-card-title truncate"></h3>
-              <p className="font-sora break-all hidden md:block text-card-text leading-3 my-auto h-6 overflow-auto"></p>
-            </div>
-            <div className="flex">
-              <div
-                className="
-                  flex 
-                  shadow-md 
-                  rounded 
-                  bg-libuBlack
-                  text-libuWhite
-                  h-10 
-                  w-full 
-                  mx-1 
-                  mb-1"
-              >
-                <div className="font-bold font-inter m-auto text-center text-xs md:text-left"></div>
-              </div>
-            </div>
-          </div>
         </div>
+        <div className="mx-1 p-1">
+          <h3 className="text-lg font-bold font-inter text-libuBlack truncate">
+            A
+          </h3>
+          <p className="text-libuBlack font-sora break-all hidden md:block text-card-text leading-3 my-auto h-6 overflow-auto">
+            desc
+          </p>
+        </div>
+      </div>
+
+      <div className="flex m-1">
+        <div
+          className="
+                  flex
+                  rounded
+                  bg-libuWhite3
+                  h-10 
+                  w-9/12"
+        >
+          <div className="m-auto"></div>
+        </div>
+        <div className="w-3/12 rounded ml-1 h-10 bg-libuWhite3"></div>
       </div>
     </div>
   ));

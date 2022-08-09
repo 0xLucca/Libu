@@ -1,10 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useEffect, useState } from 'react';
-import Nav from '../components/Nav';
+import Nav from '../components/generals/Nav';
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 import MembershipCard from '../components/MembershipCard';
 import LoadingMembershipCard from '../components/loading/LoadingMembershipCard';
+import Footer from '../components/generals/Footer';
 
 export default function places() {
   const [locksList, setLocksList] = useState([]);
@@ -59,7 +60,7 @@ export default function places() {
           w-10/12 
           mx-auto 
           grid
-          xl:grid-cols-5
+          xl:grid-cols-6
           lg:grid-cols-4
           md:grid-cols-3
           sm:grid-cols-3
@@ -75,6 +76,7 @@ export default function places() {
             )}
           </div>
         </div>
+        <Footer />
       </div>
     </>
   );
