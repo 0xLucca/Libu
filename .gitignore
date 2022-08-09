@@ -2,18 +2,17 @@
 
 # dependencies
 dapp/node_modules
-/.pnp
-.pnp.js
+smart-contracts/node_modules
 
 # testing
-/coverage
+smart-contracts/coverage
 
 # next.js
 dapp/.next/
 /out/
 
 # production
-/build
+dapp/build
 
 # misc
 .DS_Store
