@@ -6,6 +6,7 @@ import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 import MembershipCard from '../components/MembershipCard';
 import LoadingMembershipCard from '../components/loading/LoadingMembershipCard';
 import Footer from '../components/generals/Footer';
+import Title from '../components/generals/Title';
 
 export default function places() {
   const [locksList, setLocksList] = useState([]);
@@ -50,6 +51,7 @@ export default function places() {
     <>
       <div className="bg-libuBlack">
         <Nav />
+        <Title text={'Memberships'} />
         <div className="flex">
           <div
             className="

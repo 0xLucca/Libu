@@ -15,10 +15,23 @@ const NFTDesc = ({ nft }) => {
       </div>
       <div className="w-full">
         <div className="w-88 h-88 md:w-111 md:h-111 lg:w-96 lg:h-96 xl:w-10/12 xl:h-126 m-auto">
-          <div className="w-full h-full p-3">
+          <div className="w-full h-full py-3">
             <div className="h-1/5 flex">
-              <div className="my-auto">
-                <h1 className="text-3xl font-inter font-bold text-libuWhite">
+              <div
+                className="
+                  my-auto
+                  truncate
+                  w-88 
+                  md:w-111 
+                  lg:w-96 
+                  xl:w-10/12
+                  "
+              >
+                <h1
+                  className="
+                  
+                text-3xl font-inter font-bold text-libuWhite"
+                >
                   {nft.name}
                 </h1>
                 <h2 className="text-xl font-sora text-libuWhite3">
@@ -29,15 +42,37 @@ const NFTDesc = ({ nft }) => {
             <div className="h-2/5 my-auto flex">
               <div className="my-auto w-4/5">
                 <p className="text-lg font-sora text-libuWhite">
-                  {nft.address}
+                  jhdfklañfjka fjdkal ñfjka jfk lñajfkjdslñkf j kjlkdaf jk jkj j
+                  kflñjafkjañj
                 </p>
               </div>
             </div>
             <div className="h-2/5 my-auto flex">
               <div className="my-auto w-full">
                 <div className="lg:flex">
-                  <div className="flex shadow-md rounded border-libuPurple bg-libuWhite h-10 lg:w-1/2 mx-1 mb-1">
-                    <div className="font-bold font-inter m-auto text-center text-xs md:text-left">
+                  <div
+                    className="
+                    flex 
+                    shadow-md 
+                    rounded 
+                    border-libuPurple 
+                    bg-libuWhite 
+                    h-10 
+                    w-full
+                    lg:w-1/2 
+                    mx-1 
+                    mb-1
+                    "
+                  >
+                    <div
+                      className="
+                      font-bold 
+                      font-inter 
+                      m-auto 
+                      text-center 
+                      text-xs
+                      "
+                    >
                       {nft.price} POL
                     </div>
                   </div>
@@ -50,17 +85,19 @@ const NFTDesc = ({ nft }) => {
                   hover:text-libuWhite
                     text-libuDark
                     h-10 
+                    w-full
                     lg:w-1/2 
                     mx-1 
                     mb-1
                     flex 
+                    text-xs
                     items-center 
-                    font-sora 
-                    font-bold 
+                    font-sora
+                    font-black 
                     justify-center
                     "
                   >
-                    comprar
+                    COMPRAR
                   </button>
                 </div>
               </div>

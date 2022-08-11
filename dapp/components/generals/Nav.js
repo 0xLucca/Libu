@@ -3,22 +3,36 @@ import Link from 'next/link';
 import Image from 'next/image';
 import logoNegative from '../../assets/imgs/logoNegative.png';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
+import { useRouter } from 'next/router';
 
 const Nav = () => {
+  const router = useRouter();
   return (
-    <div className="bg-libuBlack flex h-16">
-      <div className="md:w-4/12 lg:w-8/12 flex">
+    <div className="bg-libuBlack flex h-18 sticky top-0 z-50 justify-between">
+      <div className="w-2/12 md:w-5/12 lg:w-8/12 flex">
         <div className="w-12 my-auto ml-4 flex cursor-pointer">
           <Link href="/">
             <Image src={logoNegative} alt="logo" />
           </Link>
         </div>
       </div>
-      <div className="h-fit m-auto w-4/12 flex justify-evenly text-libuWhite">
-        <div className="h-fit m-auto font-inter font-semibold text-md">
+      <div className="w-10/12 md:w-7/12 lg:w-4/12 flex justify-evenly text-libuWhite">
+        <div
+          className={
+            router.pathname == '/'
+              ? 'h-fit m-auto font-inter font-semibold text-md text-libuGreen'
+              : 'h-fit m-auto font-inter font-semibold text-md'
+          }
+        >
           <Link href="/">home</Link>
         </div>
-        <div className="h-fit m-auto font-inter font-semibold text-md">
+        <div
+          className={
+            router.pathname == '/memberships'
+              ? 'h-fit m-auto font-inter font-semibold text-md text-libuGreen'
+              : 'h-fit m-auto font-inter font-semibold text-md'
+          }
+        >
           <Link href="/memberships">memberships</Link>
         </div>
         <div className="h-fit m-auto">
@@ -47,17 +61,17 @@ const Nav = () => {
                       return (
                         <button
                           className="bg-libuGreen
-                          text-md
-                          font-inter
-                          font-semibold
-                          text-md
-                          text-libuBlack
-                          rounded-full
-                          py-1.5
-                          px-4
-                          hover:bg-libuBlue
-                          hover:text-libuWhite
-                          "
+                        text-md
+                        font-inter
+                        font-semibold
+                        text-md
+                        text-libuBlack
+                        rounded-full
+                        py-1.5
+                        px-4
+                        hover:bg-libuBlue
+                        hover:text-libuWhite
+                        "
                           onClick={openConnectModal}
                           type="button"
                         >

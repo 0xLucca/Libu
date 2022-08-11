@@ -45,7 +45,17 @@ const myCustomTheme: Theme = {
 function MyApp({ Component, pageProps }) {
   return (
     <WagmiConfig client={wagmiClient}>
-      <RainbowKitProvider chains={chains} theme={darkTheme()}>
+      <RainbowKitProvider
+        chains={chains}
+        theme={darkTheme({
+          accentColor: '#51FDED',
+          accentColorForeground: '#363732',
+          borderRadius: 'medium',
+          fontStack: 'rounded',
+          overflow: 'small',
+          modalBackground: '#51FDED',
+        })}
+      >
         <Component {...pageProps} />
       </RainbowKitProvider>
     </WagmiConfig>

@@ -26,7 +26,7 @@ const LoadingMembershipCard = () => {
         "
     >
       <div className="">
-        <div className="h-52 bg-libuWhite3 mx-1 mt-1 rounded">
+        <div className="h-44 md:h-52 bg-libuWhite3 mx-1 mt-1 rounded">
           <Image
             src=""
             alt=""
