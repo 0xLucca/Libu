@@ -1,14 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-hooks/rules-of-hooks */
-import React, { useEffect, useState } from 'react';
-import Nav from '../components/generals/Nav';
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
-import MembershipCard from '../components/MembershipCard';
-import LoadingMembershipCard from '../components/loading/LoadingMembershipCard';
-import Footer from '../components/generals/Footer';
-import Title from '../components/generals/Title';
+import React, { useEffect, useState } from 'react';
+import CreatorCard from '../../components/creators/CreatorCard';
+import Footer from '../../components/generals/Footer';
+import Nav from '../../components/generals/Nav';
+import Title from '../../components/generals/Title';
+import LoadingCreatorCard from '../../components/loading/LoadingCreatorCard';
 
-export default function places() {
+const indexCreator = () => {
   const [locksList, setLocksList] = useState([]);
   const [islocksList, setisLocksList] = useState(true);
 
@@ -19,10 +19,6 @@ export default function places() {
   query {
     locks (first: 15) {
         address
-        name
-        tokenAddress
-        price
-        maxNumberOfKeys
     }
   }
 `;
@@ -37,9 +33,7 @@ export default function places() {
         query: gql(locksQuery),
       })
       .then(({ data }) => {
-        console.log('Subgraph data: ', data);
         setLocksList(data.locks);
-        console.log('lockList data: ', locksList);
         setisLocksList(false);
       })
       .catch((err) => {
@@ -51,10 +45,11 @@ export default function places() {
     <>
       <div className="bg-libuBlack">
         <Nav />
-        <Title text={'Memberships'} />
+        <Title text={'Creadores'} />
         <div className="flex">
           <div
             className="
+            gap-3
           xl:w-11/12 
           lg:w-10/12 
           md:w-10/12 
@@ -62,19 +57,16 @@ export default function places() {
           w-10/12 
           mx-auto 
           grid
-          xl:grid-cols-6
-          lg:grid-cols-4
-          md:grid-cols-3
-          sm:grid-cols-3
-          grid-cols-2
+          xl:grid-cols-4
+          lg:grid-cols-3
+          md:grid-cols-2
+          grid-cols-1
           "
           >
             {islocksList === true ? (
-              <LoadingMembershipCard />
+              <LoadingCreatorCard />
             ) : (
-              locksList.map((nft) => (
-                <MembershipCard nft={nft} key={nft.tokenAddress} />
-              ))
+              locksList.map((nft) => <CreatorCard creator={nft} key={nft} />)
             )}
           </div>
         </div>
@@ -82,4 +74,6 @@ export default function places() {
       </div>
     </>
   );
-}
+};
+
+export default indexCreator;

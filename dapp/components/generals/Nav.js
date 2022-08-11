@@ -33,7 +33,16 @@ const Nav = () => {
               : 'h-fit m-auto font-inter font-semibold text-md'
           }
         >
-          <Link href="/memberships">memberships</Link>
+          <Link href="/memberships">membresias</Link>
+        </div>
+        <div
+          className={
+            router.pathname == '/creators'
+              ? 'h-fit m-auto font-inter font-semibold text-md text-libuGreen'
+              : 'h-fit m-auto font-inter font-semibold text-md'
+          }
+        >
+          <Link href="/creators">creadores</Link>
         </div>
         <div className="h-fit m-auto">
           <ConnectButton.Custom>

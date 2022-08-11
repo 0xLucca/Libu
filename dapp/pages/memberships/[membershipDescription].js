@@ -1,11 +1,11 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import Nav from '../components/generals/Nav';
-import Footer from '../components/generals/Footer';
-import NFTDesc from '../components/NFTDesc';
-import BreadCrumbs from '../components/BreadCrumbs';
-import Breadcrumb from '../components/BreadCrumbs';
-import BreadcrumbItem from '../components/BreadcrumbItem';
+import Nav from '../../components/generals/Nav';
+import Footer from '../../components/generals/Footer';
+import MembershipDescription from '../../components/memberships/MembershipDescription';
+import Breadcrumb from '../../components/breadcrum/BreadCrumbs';
+import BreadcrumbItem from '../../components/breadcrum/BreadcrumbItem';
 
 const ticketDesc = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -58,7 +58,7 @@ const ticketDesc = () => {
           ))}
       </Breadcrumb>
 
-      <NFTDesc nft={thisNFT} />
+      <MembershipDescription nft={thisNFT} />
       <Footer />
     </div>
   );

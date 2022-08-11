@@ -13,9 +13,10 @@ const Title = ({ text }) => {
         my-7
         font-inter
         font-bold
-        text-libuWhite
+        text-white
         text-4xl 
-        lg:text-5xl"
+        lg:text-5xl
+        "
     >
       {text}
     </p>

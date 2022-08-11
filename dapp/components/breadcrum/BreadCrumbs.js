@@ -3,8 +3,6 @@ import { Children } from 'react';
 const Breadcrumb = ({ children }) => {
   const childrenArray = Children.toArray(children);
 
-  console.log(childrenArray);
-
   const childrenWtihSeperator = childrenArray.map((child, index) => {
     if (index !== childrenArray.length - 1) {
       return (

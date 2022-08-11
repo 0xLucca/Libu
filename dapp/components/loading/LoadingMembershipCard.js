@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Image from 'next/image';
 
 const LoadingMembershipCard = () => {
   const [loadingMembership, setLoadingMembership] = useState([
@@ -26,13 +25,7 @@ const LoadingMembershipCard = () => {
         "
     >
       <div className="">
-        <div className="h-44 md:h-52 bg-libuWhite3 mx-1 mt-1 rounded">
-          <Image
-            src=""
-            alt=""
-            className="w-full h-full object-center object-cover"
-          />
-        </div>
+        <div className="h-44 md:h-52 bg-libuWhite3 mx-1 mt-1 rounded"></div>
         <div className="mx-1 p-1">
           <h3 className="text-lg font-bold font-inter text-libuBlack truncate">
             A

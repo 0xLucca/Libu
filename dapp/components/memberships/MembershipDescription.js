@@ -1,17 +1,11 @@
-import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 
-const NFTDesc = ({ nft }) => {
+const MembershipDescription = ({ nft }) => {
   return (
     <div className="p-3 md:w-10/12 m-3 md:m-auto lg:flex">
       <div className="mb-5 lg:mb-0 w-full">
-        <div className="bg-libuWhite3 w-88 h-88 md:w-111 md:h-111 lg:w-96 lg:h-96 xl:w-126 xl:h-126 rounded-lg m-auto flex">
-          <Image
-            src={''}
-            alt={''}
-            className="w-full h-full object-center object-cover rounded-lg"
-          />
-        </div>
+        <div className="bg-libuWhite3 w-88 h-88 md:w-111 md:h-111 lg:w-96 lg:h-96 xl:w-126 xl:h-126 rounded-lg m-auto flex"></div>
       </div>
       <div className="w-full">
         <div className="w-88 h-88 md:w-111 md:h-111 lg:w-96 lg:h-96 xl:w-10/12 xl:h-126 m-auto">
@@ -20,7 +14,6 @@ const NFTDesc = ({ nft }) => {
               <div
                 className="
                   my-auto
-                  truncate
                   w-88 
                   md:w-111 
                   lg:w-96 
@@ -29,14 +22,15 @@ const NFTDesc = ({ nft }) => {
               >
                 <h1
                   className="
-                  
                 text-3xl font-inter font-bold text-libuWhite"
                 >
                   {nft.name}
                 </h1>
-                <h2 className="text-xl font-sora text-libuWhite3">
-                  {nft.address}
-                </h2>
+                <Link href={`/creators/${nft.address}?creator=${nft.address}`}>
+                  <h2 className="text-md font-sora text-libuWhite3 cursor-pointer">
+                    {nft.address}
+                  </h2>
+                </Link>
               </div>
             </div>
             <div className="h-2/5 my-auto flex">
@@ -78,6 +72,7 @@ const NFTDesc = ({ nft }) => {
                   </div>
                   <button
                     className="
+                    duration-100
                     shadow-md 
                     rounded                   
                     bg-libuGreen
@@ -109,4 +104,4 @@ const NFTDesc = ({ nft }) => {
   );
 };
 
-export default NFTDesc;
+export default MembershipDescription;

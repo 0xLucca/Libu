@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import React from 'react';
-import Image from 'next/image';
 
 const MembershipCard = ({ nft }) => {
   return (
@@ -22,16 +21,10 @@ const MembershipCard = ({ nft }) => {
         "
     >
       <Link
-        href={`/membershipDescription?address=${nft.address}&name=${nft.name}&expirationDuration=${nft.expirationDuration}&creationBlock=${nft.creationBlock}&tokenAddress=${nft.tokenAddress}&price=${nft.price}`}
+        href={`/memberships/${nft.name}?address=${nft.address}&name=${nft.name}&expirationDuration=${nft.expirationDuration}&creationBlock=${nft.creationBlock}&tokenAddress=${nft.tokenAddress}&price=${nft.price}`}
       >
         <div className="">
-          <div className="h-44 md:h-52 bg-libuWhite3 mx-1 mt-1 rounded">
-            <Image
-              src=""
-              alt=""
-              className="w-full h-full object-center object-cover"
-            />
-          </div>
+          <div className="h-44 md:h-52 bg-libuWhite3 mx-1 mt-1 rounded"></div>
           <div className="mx-1 p-1">
             <h3 className="text-lg font-bold font-inter text-libuWhite truncate">
               {nft.name}
@@ -57,7 +50,7 @@ const MembershipCard = ({ nft }) => {
             {nft.price.slice(0, 2)} POL
           </div>
         </div>
-        <div className="w-3/12 rounded ml-1 h-10 hover:bg-libuBlue bg-libuGreen hover:text-libuWhite flex items-center font-inter font-bold justify-center">
+        <div className="duration-100 w-3/12 rounded ml-1 h-10 hover:bg-libuBlue bg-libuGreen hover:text-libuWhite flex items-center font-inter font-bold justify-center">
           +
         </div>
       </div>
