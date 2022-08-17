@@ -4,9 +4,11 @@ import Image from 'next/image';
 import logoNegative from '../../assets/imgs/logoNegative.png';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { useRouter } from 'next/router';
+import { useAccount } from 'wagmi';
 
 const Nav = () => {
   const router = useRouter();
+  const { address, isConnected } = useAccount();
   return (
     <div className="bg-libuBlack flex h-18 sticky top-0 z-50 justify-between">
       <div className="w-2/12 md:w-5/12 lg:w-8/12 flex">
@@ -16,7 +18,7 @@ const Nav = () => {
           </Link>
         </div>
       </div>
-      <div className="w-10/12 md:w-7/12 lg:w-4/12 flex justify-evenly text-libuWhite">
+      <div className="w-10/12 flex justify-evenly text-libuWhite">
         <div
           className={
             router.pathname == '/'
@@ -44,6 +46,17 @@ const Nav = () => {
         >
           <Link href="/creators">creadores</Link>
         </div>
+        {isConnected && (
+          <div
+            className={
+              router.pathname == '/mycollections'
+                ? 'h-fit m-auto font-inter font-semibold text-md text-libuGreen'
+                : 'h-fit m-auto font-inter font-semibold text-md'
+            }
+          >
+            <Link href="/mycollections">mis colecciones</Link>
+          </div>
+        )}
         <div className="h-fit m-auto">
           <ConnectButton.Custom>
             {({
