@@ -35,14 +35,6 @@ const wagmiClient = createClient({
   webSocketProvider,
 });
 
-/*
-const myCustomTheme: Theme = {
-  colors: {
-    accentColor: '#51FDED',
-  },
-};
-*/
-
 function MyApp({ Component, pageProps }) {
   return (
     <WagmiConfig client={wagmiClient}>
@@ -57,9 +49,7 @@ function MyApp({ Component, pageProps }) {
           modalBackground: '#51FDED',
         })}
       >
-        <CreatorProvider>
-          <Component {...pageProps} />
-        </CreatorProvider>
+        <Component {...pageProps} />
       </RainbowKitProvider>
     </WagmiConfig>
   );

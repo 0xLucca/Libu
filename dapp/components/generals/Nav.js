@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import logoNegative from '../../assets/imgs/logoNegative.png';
@@ -9,6 +9,13 @@ import { useAccount } from 'wagmi';
 const Nav = () => {
   const router = useRouter();
   const { address, isConnected } = useAccount();
+
+  const [connected, setConnected] = useState(false);
+
+  useEffect(() => {
+    setConnected(isConnected);
+  }, [isConnected]);
+
   return (
     <div className="bg-libuBlack flex h-18 sticky top-0 z-50 justify-between">
       <div className="w-2/12 md:w-5/12 lg:w-8/12 flex">
@@ -46,7 +53,7 @@ const Nav = () => {
         >
           <Link href="/creators">creadores</Link>
         </div>
-        {isConnected && (
+        {connected && (
           <div
             className={
               router.pathname == '/mycollections'

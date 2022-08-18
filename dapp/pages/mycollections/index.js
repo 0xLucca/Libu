@@ -5,62 +5,96 @@ import Nav from '../../components/generals/Nav';
 import { useAccount } from 'wagmi';
 import Footer from '../../components/generals/Footer';
 import Title from '../../components/generals/Title';
+import { ApolloClient, gql, InMemoryCache } from '@apollo/client';
+import MyCollectionCard from '../../components/collections/MyCollectionCard';
+import LoadingMembershipCard from '../../components/loading/LoadingMembershipCard';
 
 export default function places() {
-  const { isConnected } = useAccount();
+  const { address, isConnected } = useAccount();
+
+  const [connected, setConnected] = useState(false);
+  const [keysList, setKeysList] = useState([]);
+  const [iskeysList, setisKeysList] = useState(true);
+
   const APIURL =
     'https://api.thegraph.com/subgraphs/name/unlock-protocol/polygon';
 
   const locksQuery = `
-query {
-    keys(where: {owner: }) {
-        tokenURI
-        owner {
-          id
+    query {
+      keys(
+        where: { owner_: {address: "${address}"}}
+      ) {
+        lock{
+          address  
         }
         keyId
-        lock {
-          id
-        }
+        tokenURI
       }
     }
-}
-`;
-  useEffect(() => {
-    if (isConnected) {
-      const client = new ApolloClient({
-        uri: APIURL,
-        cache: new InMemoryCache(),
-      });
+    `;
 
-      client
-        .query({
-          query: gql(locksQuery),
-        })
-        .then(({ data }) => {
-          console.log('My Memberships: ', data);
-          setLocksList(data);
-          setisLocksList(false);
-        })
-        .catch((err) => {
-          console.log('Error fetching data: ', err);
-        });
-    }
+  useEffect(() => {
+    setConnected(isConnected);
   }, [isConnected]);
 
+  useEffect(() => {
+    const client = new ApolloClient({
+      uri: APIURL,
+      cache: new InMemoryCache(),
+    });
+
+    client
+      .query({
+        query: gql(locksQuery),
+      })
+      .then(({ data }) => {
+        console.log(data.keys);
+        setKeysList(data.keys);
+        setisKeysList(false);
+      })
+      .catch((err) => {
+        console.log('Error fetching data: ', err);
+      });
+  }, []);
+
+  console.log(connected);
+
   return (
-    <>
-      <div className="bg-libuBlack min-h-screen ">
-        <Nav />
+    <div className="bg-libuBlack min-h-screen ">
+      <Nav />
 
-        {isConnected ? (
-          <Title text={'Mis colecciones'} />
-        ) : (
-          <Title text={'Conecte su wallet para continuar'} />
-        )}
+      {connected ? (
+        <Title text={'Mis coleccionables'} />
+      ) : (
+        <Title text={'Conecta tu wallet :)'} />
+      )}
 
-        <Footer />
+      <div className="flex">
+        <div
+          className="
+          xl:w-11/12 
+          lg:w-10/12 
+          md:w-10/12 
+          sm:w-10/12 
+          w-10/12 
+          mx-auto 
+          grid
+          xl:grid-cols-6
+          lg:grid-cols-4
+          md:grid-cols-3
+          sm:grid-cols-3
+          grid-cols-2
+          "
+        >
+          {iskeysList ? (
+            <LoadingMembershipCard />
+          ) : (
+            keysList.map((nft) => <MyCollectionCard nft={nft} key={nft} />)
+          )}
+        </div>
       </div>
-    </>
+
+      <Footer />
+    </div>
   );
 }
