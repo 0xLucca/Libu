@@ -2,6 +2,7 @@
 
 # dependencies
 dapp/node_modules
+smart-contracts/node_modules
 /.pnp
 .pnp.js
 
@@ -26,6 +27,7 @@ yarn-error.log*
 .pnpm-debug.log*
 
 # local env files
+smart-contracts/.env
 .env.local
 .env.development.local
 .env.test.local

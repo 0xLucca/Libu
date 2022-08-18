@@ -3,12 +3,68 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import QRCode from 'qrcode.react';
+import { useAccount, useNetwork } from 'wagmi';
+import { useSignMessage } from 'wagmi'
 
 const MyCollectionCard = ({ nft }) => {
   const [collectible, setCollectible] = useState({});
   const [showOptions, setShowOptions] = useState(false);
   const [showTransfer, setShowTransfer] = useState(false);
   const [showQr, setShowQr] = useState(false);
+  const [signature, setSignature] = useState("")
+  const [payload, setPayload] = useState("")
+  const [account, setAccount]= useState(address)
+
+  const { address, isConnected } = useAccount();
+  //const { network } = useNetwork();
+  const network = 137;
+
+  useEffect(()=>{
+    setAccount(address)
+  },[address])
+
+  const { data, isError, isLoading, isSuccess, signMessage } = useSignMessage({
+    message: payload,
+    onSettled(data,error){
+      console.log(`Data: ${data}`)
+      if(isSuccess){
+        setSignature({
+          payload,
+          data,
+        })
+        console.log(data)
+        setShowQr(true)
+      }
+    }
+  })
+  
+  const handleSignature = async () => {
+    //setError('')
+    let _payload = JSON.stringify({
+      network,
+      account,
+      lockAddress: nft.lock.address,
+      timestamp: Date.now(),
+      tokenId: nft.keyId,
+    })
+
+    setPayload(_payload)
+  
+    //const signature = await walletService.signMessage(payload, 'personal_sign')
+    signMessage()
+  }
+
+  const QRUrl = () => {
+    const url = new URL(`https://app.unlock-protocol.com/verification`)
+    const data = encodeURIComponent(signature.payload)
+    const sig = encodeURIComponent(signature.data)
+    url.searchParams.append('data', data)
+    url.searchParams.append('sig', sig)
+
+    // eslint-disable-next-line no-console
+    console.log(url.toString()) // debugging
+    return url.toString()
+  }
 
   useEffect(() => {
     fetch(`${nft.tokenURI}`)
@@ -73,7 +129,7 @@ const MyCollectionCard = ({ nft }) => {
             </button>
             <button
               onClick={() => {
-                setShowQr(!showQr);
+                handleSignature();
               }}
               className="mx-2 my-1 text-libuGreen font-sora text-sm text-start"
             >
@@ -90,19 +146,14 @@ const MyCollectionCard = ({ nft }) => {
         >
           {showQr ? (
             <QRCode
-              size={'100%'}
-              value="https://reactjs.org/"
+              size={'90%'}
+              value={QRUrl()}
               renderAs="svg"
-              className="m-auto h-44 md:h-52 rounded"
+              className="m-auto h-44 md:h-52 rounded z-50"
               bgColor="#FCF7F8"
               fgColor="#363732"
               includeMargin={true}
             />
-          ) : (
-            <Image layout="fill" src={collectible.image} />
-          )}
-          {showTransfer ? (
-            <div>aaaa</div>
           ) : (
             <Image layout="fill" src={collectible.image} />
           )}

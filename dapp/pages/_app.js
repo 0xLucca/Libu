@@ -12,7 +12,7 @@ import { publicProvider } from 'wagmi/providers/public';
 import { CreatorProvider } from '../firebase/context';
 
 const { chains, provider, webSocketProvider } = configureChains(
-  [chain.mainnet, chain.polygon, chain.rinkeby],
+  [chain.polygon, chain.rinkeby],
   [
     alchemyProvider({
       // This is Alchemy's default API key.
