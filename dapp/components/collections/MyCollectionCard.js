@@ -11,18 +11,15 @@ const MyCollectionCard = ({ nft }) => {
   const [collectible, setCollectible] = useState({});
   const [showOptions, setShowOptions] = useState(false);
   const [showQr, setShowQr] = useState(false);
+  const [showTransfer, setShowTransfer] = useState(false);
   const [signature, setSignature] = useState('');
   const [payload, setPayload] = useState('');
   const [account, setAccount] = useState(address);
+  const [accountToTransfer, setAccountToTransfer] = useState('');
 
   const { address, isConnected } = useAccount();
   const { network } = useNetwork();
   //const network = 137;
-
-  //borrable 👇
-  useEffect(() => {
-    setAccount(address);
-  }, [address]);
 
   useEffect(() => {
     fetch(`${nft.tokenURI}`)
@@ -41,26 +38,6 @@ const MyCollectionCard = ({ nft }) => {
       });
   }, [nft]);
 
-  //1️⃣
-  //creo un payload al renderizar la card, asi ya esta listo
-  //y no necesita ser ejecutado para ser creado
-  useEffect(() => {
-    const payload = JSON.stringify({
-      network: network,
-      account: account,
-      lockAddress: nft.lock.address,
-      timestamp: Date.now(),
-      tokenId: nft.keyId,
-    });
-
-    setPayload(payload);
-  }, [nft]);
-
-  //borrable 👇
-  useEffect(() => {
-    console.log('Show QR', showQr);
-  }, [showQr]);
-
   const QRUrl = () => {
     const url = new URL(`https://app.unlock-protocol.com/verification`);
     const data = encodeURIComponent(signature.payload);
@@ -72,12 +49,26 @@ const MyCollectionCard = ({ nft }) => {
     return url.toString();
   };
 
+  const createPayload = () => {
+    try {
+      const payload = JSON.stringify({
+        network: network,
+        account: account,
+        lockAddress: nft.lock.address,
+        timestamp: Date.now(),
+        tokenId: nft.keyId,
+      });
+
+      setPayload(payload);
+
+      signMessage();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const { data, isError, isLoading, isSuccess, signMessage } = useSignMessage({
-    //2️⃣
-    //aca en el message, ya esta seleccionado el payload (del useState) creado al momento del rendereo
     message: payload,
-    //esta wea no le termino de entender 🥴
-    //https://wagmi.sh/docs/hooks/useSendTransaction#onsettled-optional
     onSettled(data, error) {
       console.log(`Data: ${data}`);
       setSignature({
@@ -85,43 +76,78 @@ const MyCollectionCard = ({ nft }) => {
         data,
       });
       setShowQr(!showQr);
-
-      /*
-      if (isSuccess) {
-        setSignature({
-          payload,
-          data,
-        });
-        console.log(data);
-        setShowQr(!showQr);
-      }
-      */
     },
   });
 
-  //3️⃣
-  //Esta funcion no iria porque el payload ya esta creado desde un principio con el useEffect
-  /*
-  const handleSignature = () => {
-    //setError('')
-    let _payload = JSON.stringify({
-      network,
-      account,
-      lockAddress: nft.lock.address,
-      timestamp: Date.now(),
-      tokenId: nft.keyId,
-    });
-
-    setPayload(_payload);
-
-    //const signature = await walletService.signMessage(payload, 'personal_sign')
-    signMessage();
-  };
-  */
-
-  return (
-    <div
-      className="
+  if (showQr) {
+    return (
+      <div className="absolute backdrop-blur-sm z-50 m-auto h-screen w-screen top-0 left-0 flex">
+        <div className="bg-libuBlack p-7 border border-libuGreen rounded-md h-fit m-auto">
+          <div className="mb-2 flex justify-between">
+            <button
+              onClick={() => setShowQr(!showQr)}
+              className="font-sora font px-3 py-1 rounded text-libuGreen border border-libuGreen hover:bg-libuGreen hover:text-libuBlack"
+            >
+              x
+            </button>
+          </div>
+          <QRCode
+            size={'100%'}
+            value={QRUrl()}
+            renderAs="svg"
+            className="m-auto h-96 w-96 rounded"
+            bgColor="#FCF7F8"
+            fgColor="#363732"
+            includeMargin={true}
+          />
+        </div>
+      </div>
+    );
+  } else if (showTransfer) {
+    return (
+      <div className="absolute backdrop-blur-sm z-50 m-auto h-screen w-screen top-0 left-0 flex">
+        <div className="bg-libuBlack p-7 border border-libuGreen rounded-md h-fit m-auto">
+          <div className="mb-2 flex justify-between">
+            <button
+              onClick={() => setShowTransfer(!showTransfer)}
+              className="font-sora font px-3 py-1 rounded text-libuGreen border border-libuGreen hover:bg-libuGreen hover:text-libuBlack"
+            >
+              x
+            </button>
+          </div>
+          <div>
+            <p className="font-sora font text-libuGreen my-5">
+              Transferir a la cuenta:
+            </p>
+            <form className="flex flex-col">
+              <input
+                type="text"
+                className="p-1 rounded w-96 mb-5"
+                placeholder="0x0000000000000000000000000000000000000000"
+                onChange={(e) => {
+                  //CUANDO CAMBIA LO GUARDA EN EL STATE
+                  setAccountToTransfer(e.target.value);
+                }}
+              ></input>
+              <button
+                type="button"
+                onClick={() => {
+                  //FUNCION QUE ENVIA
+                  console.log(accountToTransfer);
+                }}
+                className="font-sora font px-3 py-2 rounded text-libuGreen border border-libuGreen hover:bg-libuGreen hover:text-libuBlack"
+              >
+                Transferir
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    );
+  } else {
+    return (
+      <div
+        className="
         mx-auto
         my-6
         w-40
@@ -135,69 +161,55 @@ const MyCollectionCard = ({ nft }) => {
         flex
         flex-col
         "
-    >
-      <div className="h-fit">
-        {!showOptions ? (
-          <button
-            onClick={() => {
-              setShowOptions(!showOptions);
-            }}
-            className="absolute m-1 h-6 w-6 rounded bg-libuBlack border border-libuGreen hover:bg-libuGreen z-10"
-          ></button>
-        ) : (
-          <div
-            onMouseLeave={() => {
-              setShowOptions(!showOptions);
-            }}
-            className="absolute m-1 w-32 rounded bg-libuBlack border border-libuGreen z-10 flex flex-col"
-          >
+      >
+        <div className="h-fit">
+          {!showOptions ? (
             <button
-              //4️⃣
-              //No ejecuto la funcion handleSignature (que creaba el payload)
-              //ejecuto directamente el singMessage de wagmi
-              //onClick={handleSignature}
               onClick={() => {
-                signMessage(), handleShowQR(showQr);
+                setShowOptions(!showOptions);
               }}
-              className="mx-2 my-1 text-libuGreen font-sora text-sm text-start"
-            >
-              QR
-            </button>
-          </div>
-        )}
-        <div
-          className={
-            showQr
-              ? 'h-44 md:h-52 bg-libuWhite mx-1 mt-1 rounded relative'
-              : 'h-44 md:h-52 bg-libuWhite3 mx-1 mt-1 rounded relative'
-          }
-        >
-          {showQr ? (
-            <QRCode
-              size={'90%'}
-              value={QRUrl()}
-              level={'L'}
-              renderAs="svg"
-              className="m-auto h-44 md:h-52 rounded z-50"
-              bgColor="#FCF7F8"
-              fgColor="#363732"
-              includeMargin={true}
-            />
+              className="absolute m-1 h-6 w-6 rounded bg-libuBlack border border-libuGreen hover:bg-libuGreen z-10"
+            ></button>
           ) : (
-            <Image layout="fill" src={collectible.image} />
+            <div
+              onMouseLeave={() => {
+                setShowOptions(!showOptions);
+              }}
+              className="absolute m-1 w-32 rounded bg-libuBlack border border-libuGreen z-10 flex flex-col"
+            >
+              <button
+                onClick={() => {
+                  createPayload();
+                }}
+                className="mx-2 my-1 text-libuGreen font-sora text-sm text-start"
+              >
+                QR
+              </button>
+              <button
+                onClick={() => {
+                  setShowTransfer(!showTransfer);
+                }}
+                className="mx-2 my-1 text-libuGreen font-sora text-sm text-start"
+              >
+                Transferir
+              </button>
+            </div>
           )}
-        </div>
-        <div className="mx-1 p-1">
-          <h3 className="text-lg font-bold font-inter text-libuWhite truncate">
-            {collectible.name}
-          </h3>
-          <p className="text-libuWhite2 h-15 font-sora break-all hidden md:block text-card-text my-auto overflow-auto">
-            {collectible.description}
-          </p>
+          <div className="h-44 md:h-52 bg-libuWhite3 mx-1 mt-1 rounded relative">
+            <Image layout="fill" src={collectible.image} />
+          </div>
+          <div className="mx-1 p-1">
+            <h3 className="text-lg font-bold font-inter text-libuWhite truncate">
+              {collectible.name}
+            </h3>
+            <p className="text-libuWhite2 h-15 font-sora break-all hidden md:block text-card-text my-auto overflow-auto">
+              {collectible.description}
+            </p>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 };
 
 export default MyCollectionCard;
