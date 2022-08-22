@@ -12,14 +12,23 @@ const MyCollectionCard = ({ nft }) => {
   const [showOptions, setShowOptions] = useState(false);
   const [showQr, setShowQr] = useState(false);
   const [showTransfer, setShowTransfer] = useState(false);
-  const [signature, setSignature] = useState('');
-  const [payload, setPayload] = useState('');
-  const [account, setAccount] = useState(address);
+  const [signature, setSignature] = useState("");
+  const [payload, setPayload] = useState("");
+  const [account, setAccount] = useState("");
   const [accountToTransfer, setAccountToTransfer] = useState('');
 
-  const { address, isConnected } = useAccount();
-  const { network } = useNetwork();
-  //const network = 137;
+  //Llevar a la page y pasar como parametro a la card
+  const { address, isConnected } = useAccount({
+    onDisconnect(address){
+      setAccount("");
+    }
+  });
+
+  useEffect(()=>{
+    setAccount(address);
+  },[address])
+  //const { network } = useNetwork();
+  const network = 137;
 
   useEffect(() => {
     fetch(`${nft.tokenURI}`)
@@ -51,6 +60,11 @@ const MyCollectionCard = ({ nft }) => {
 
   const createPayload = () => {
     try {
+      if(network==="" || account===""){
+        console.log("Account was not detected")
+        return 
+      }
+        
       const payload = JSON.stringify({
         network: network,
         account: account,
