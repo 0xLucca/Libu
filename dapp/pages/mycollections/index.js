@@ -89,7 +89,9 @@ export default function places() {
           {iskeysList ? (
             <LoadingMembershipCard />
           ) : (
-            keysList.map((nft) => <MyCollectionCard nft={nft} key={nft} />)
+            keysList.map((nft) => (
+              <MyCollectionCard nft={nft} key={nft.keyId} />
+            ))
           )}
         </div>
       </div>

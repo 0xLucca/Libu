@@ -12,21 +12,21 @@ const MyCollectionCard = ({ nft }) => {
   const [showOptions, setShowOptions] = useState(false);
   const [showQr, setShowQr] = useState(false);
   const [showTransfer, setShowTransfer] = useState(false);
-  const [signature, setSignature] = useState("");
-  const [payload, setPayload] = useState("");
-  const [account, setAccount] = useState("");
+  const [signature, setSignature] = useState('');
+  const [payload, setPayload] = useState('');
+  const [account, setAccount] = useState('');
   const [accountToTransfer, setAccountToTransfer] = useState('');
 
   //Llevar a la page y pasar como parametro a la card
   const { address, isConnected } = useAccount({
-    onDisconnect(address){
-      setAccount("");
-    }
+    onDisconnect(address) {
+      setAccount('');
+    },
   });
 
-  useEffect(()=>{
+  useEffect(() => {
     setAccount(address);
-  },[address])
+  }, [address]);
   //const { network } = useNetwork();
   const network = 137;
 
@@ -60,11 +60,11 @@ const MyCollectionCard = ({ nft }) => {
 
   const createPayload = () => {
     try {
-      if(network==="" || account===""){
-        console.log("Account was not detected")
-        return 
+      if (network === '' || account === '') {
+        console.log('Account was not detected');
+        return;
       }
-        
+
       const payload = JSON.stringify({
         network: network,
         account: account,
@@ -210,7 +210,13 @@ const MyCollectionCard = ({ nft }) => {
             </div>
           )}
           <div className="h-44 md:h-52 bg-libuWhite3 mx-1 mt-1 rounded relative">
-            <Image layout="fill" src={collectible.image} />
+            <Image
+              layout="fill"
+              src="data:image/gif;base64,R0…AAAALAAAAAABAAEAAAIBRAA7"
+              //src={collectible.image}
+              decoding="async"
+              data-nimg="fill"
+            />
           </div>
           <div className="mx-1 p-1">
             <h3 className="text-lg font-bold font-inter text-libuWhite truncate">

@@ -21,7 +21,9 @@ const Nav = () => {
       <div className="w-2/12 md:w-5/12 lg:w-8/12 flex">
         <div className="w-12 my-auto ml-4 flex cursor-pointer">
           <Link href="/">
-            <Image src={logoNegative} alt="logo" />
+            <a>
+              <Image src={logoNegative} alt="logo" />
+            </a>
           </Link>
         </div>
       </div>
