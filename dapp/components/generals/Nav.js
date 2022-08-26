@@ -66,6 +66,17 @@ const Nav = () => {
             <Link href="/mycollections">mis colecciones</Link>
           </div>
         )}
+        {connected && (
+          <div
+            className={
+              router.pathname == '/createevent'
+                ? 'h-fit m-auto font-inter font-semibold text-md text-libuGreen'
+                : 'h-fit m-auto font-inter font-semibold text-md'
+            }
+          >
+            <Link href="/createevent">crear evento</Link>
+          </div>
+        )}
         <div className="h-fit m-auto">
           <ConnectButton.Custom>
             {({

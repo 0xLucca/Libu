@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.6.9",
+    "@emailjs/browser": "^3.6.2",
     "@rainbow-me/rainbowkit": "^0.4.5",
     "@tailwindcss/aspect-ratio": "^0.4.0",
     "@unlock-protocol/unlock-js": "^0.26.1",
