@@ -7,7 +7,6 @@ import MembershipCard from '../../components/memberships/MembershipCard';
 import LoadingMembershipCard from '../../components/loading/LoadingMembershipCard';
 import Footer from '../../components/generals/Footer';
 import Title from '../../components/generals/Title';
-import QRmodal from '../../components/modal/QRmodal';
 
 export default function places() {
   const [locksList, setLocksList] = useState([]);
@@ -59,7 +58,6 @@ export default function places() {
       <div className="bg-libuBlack">
         <Nav />
         <Title text={'Memberships'} />
-        <QRmodal showQr={showQR} QRUrl={QRURL} />
         <div className="flex">
           <div
             className="
@@ -82,7 +80,6 @@ export default function places() {
             ) : (
               locksList.map((nft) => (
                 <MembershipCard
-                  showTheQRModal={showTheQRModal()}
                   nft={nft}
                   key={nft.tokenAddress}
                 />

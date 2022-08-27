@@ -11,6 +11,8 @@ const MyCollectionCard = ({ nft, handleQR }) => {
   const [signature, setSignature] = useState('');
   const [account, setAccount] = useState('');
   const [url, seturl] = useState('');
+  //const [payload, setPayload] = useState('');
+  let payload;
 
   const { address, isConnected } = useAccount({
     onDisconnect(address) {
@@ -68,7 +70,7 @@ const MyCollectionCard = ({ nft, handleQR }) => {
         return;
       }
 
-      const payload = JSON.stringify({
+      const _payload = JSON.stringify({
         network: network,
         account: account,
         lockAddress: nft.lock.address,
@@ -76,7 +78,9 @@ const MyCollectionCard = ({ nft, handleQR }) => {
         tokenId: nft.keyId,
       });
 
-      return payload;
+      payload = _payload
+
+      return _payload;
     } catch (error) {
       console.log(error);
     }
@@ -87,7 +91,7 @@ const MyCollectionCard = ({ nft, handleQR }) => {
     onSettled(data, error) {
       //console.log(`Data: ${data}`);
       setSignature({
-        payload: createPayload(),
+        payload: payload,
         data: data,
       });
     },
