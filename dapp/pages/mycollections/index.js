@@ -8,10 +8,13 @@ import Title from '../../components/generals/Title';
 import { ApolloClient, gql, InMemoryCache } from '@apollo/client';
 import MyCollectionCard from '../../components/collections/MyCollectionCard';
 import LoadingMembershipCard from '../../components/loading/LoadingMembershipCard';
+import QRmodal from '../../components/modal/QRmodal';
 
 export default function places() {
   const { address, isConnected } = useAccount();
 
+  const [showQR, setshowQR] = useState(false);
+  const [QRURL, setQRURL] = useState('');
   const [connected, setConnected] = useState(false);
   const [keysList, setKeysList] = useState([]);
   const [iskeysList, setisKeysList] = useState(true);
@@ -48,7 +51,6 @@ export default function places() {
         query: gql(locksQuery),
       })
       .then(({ data }) => {
-        console.log(data.keys);
         setKeysList(data.keys);
         setisKeysList(false);
       })
@@ -57,12 +59,19 @@ export default function places() {
       });
   }, []);
 
-  console.log(connected);
+  const handleQR = (QRURL, showQR) => {
+    setQRURL(QRURL);
+    setshowQR(showQR);
+  };
+
+  const handleshowQR = () => {
+    setshowQR(!showQR);
+  };
 
   return (
     <div className="bg-libuBlack min-h-screen ">
       <Nav />
-
+      {showQR && <QRmodal handleshowQR={handleshowQR} QRUrl={QRURL} />}
       {connected ? (
         <Title text={'Mis coleccionables'} />
       ) : (
@@ -90,7 +99,7 @@ export default function places() {
             <LoadingMembershipCard />
           ) : (
             keysList.map((nft) => (
-              <MyCollectionCard nft={nft} key={nft.keyId} />
+              <MyCollectionCard nft={nft} key={nft.keyId} handleQR={handleQR} />
             ))
           )}
         </div>
