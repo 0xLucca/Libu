@@ -1,51 +1,35 @@
 import Link from 'next/link';
 import React from 'react';
+import { Matic } from '@styled-icons/crypto';
 
 const MembershipDescription = ({ nft }) => {
+  console.log(nft);
   return (
-    <div className="p-3 md:w-10/12 m-3 md:m-auto lg:flex">
-      <div className="mb-5 lg:mb-0 w-full">
-        <div className="bg-libuWhite3 w-88 h-88 md:w-111 md:h-111 lg:w-96 lg:h-96 xl:w-126 xl:h-126 rounded-lg m-auto flex"></div>
+    <div className="w-9/12 lg:flex m-auto">
+      <div className="flex m-auto">
+        <div className="bg-libuWhite m-auto w-88 h-88 md:w-111 md:h-111 lg:w-96 lg:h-96 xl:w-126 xl:h-126 rounded-lg flex"></div>
       </div>
-      <div className="w-full">
-        <div className="w-88 h-88 md:w-111 md:h-111 lg:w-96 lg:h-96 xl:w-10/12 xl:h-126 m-auto">
-          <div className="w-full h-full py-3">
-            <div className="h-1/5 flex">
-              <div
-                className="
-                  my-auto
-                  w-88 
-                  md:w-111 
-                  lg:w-96 
-                  xl:w-10/12
-                  "
-              >
-                <h1
+      <div className="lg:ml-10 w-full">
+        <div className="w-full h-full flex flex-col justify-between">
+          <div className="">
+            <h1 className="text-[50px] md:text-[72px] font-inter font-black text-libuWhite leading-[70px]">
+              {nft.name}
+            </h1>
+            <h2 className="text-sm md:text-md font-sora text-libuWhite3">
+              {nft.address}
+            </h2>
+          </div>
+          <div className="h-full py-10 flex">
+            <p className="text-lg font-sora text-libuWhite">
+              jhdfklañfjka fjdkal ñfjka jfk lñajfkjdslñkf j kjlkdaf jk jkj j
+              kflñja fkjañjddddd
+            </p>
+          </div>
+          <div className="flex">
+            <div className="my-auto w-full">
+              <div className="lg:flex">
+                <div
                   className="
-                text-3xl font-inter font-bold text-libuWhite"
-                >
-                  {nft.name}
-                </h1>
-                <Link href={`/creators/${nft.address}?creator=${nft.address}`}>
-                  <h2 className="text-md font-sora text-libuWhite3 cursor-pointer">
-                    {nft.address}
-                  </h2>
-                </Link>
-              </div>
-            </div>
-            <div className="h-2/5 my-auto flex">
-              <div className="my-auto w-4/5">
-                <p className="text-lg font-sora text-libuWhite">
-                  jhdfklañfjka fjdkal ñfjka jfk lñajfkjdslñkf j kjlkdaf jk jkj j
-                  kflñjafkjañj
-                </p>
-              </div>
-            </div>
-            <div className="h-2/5 my-auto flex">
-              <div className="my-auto w-full">
-                <div className="lg:flex">
-                  <div
-                    className="
                     flex 
                     shadow-md 
                     rounded 
@@ -53,25 +37,28 @@ const MembershipDescription = ({ nft }) => {
                     bg-libuWhite 
                     h-10 
                     w-full
-                    lg:w-1/2 
                     mx-1 
                     mb-1
                     "
-                  >
-                    <div
-                      className="
+                >
+                  <div
+                    className="
                       font-bold 
                       font-inter 
                       m-auto 
                       text-center 
-                      text-xs
+                      text-md
+                      flex
                       "
-                    >
-                      {nft.price} POL
+                  >
+                    <p className="flex my-auto">{nft.price.slice(0, 2)}</p>
+                    <div className="w-6 h-6 ml-5 flex my-auto">
+                      <Matic />
                     </div>
                   </div>
-                  <button
-                    className="
+                </div>
+                <button
+                  className="
                     duration-100
                     shadow-md 
                     rounded                   
@@ -85,16 +72,15 @@ const MembershipDescription = ({ nft }) => {
                     mx-1 
                     mb-1
                     flex 
-                    text-xs
+                    text-md
                     items-center 
                     font-sora
-                    font-black 
+                    font-semibold 
                     justify-center
                     "
-                  >
-                    COMPRAR
-                  </button>
-                </div>
+                >
+                  comprar
+                </button>
               </div>
             </div>
           </div>
@@ -105,3 +91,13 @@ const MembershipDescription = ({ nft }) => {
 };
 
 export default MembershipDescription;
+
+/*
+
+                <Link href={`/creators/${nft.address}?creator=${nft.address}`}>
+                  <h2 className="text-md font-sora text-libuWhite3 cursor-pointer">
+                    {nft.address}
+                  </h2>
+                </Link>
+
+*/

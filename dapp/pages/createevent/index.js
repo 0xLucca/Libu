@@ -17,15 +17,10 @@ const indexCreateEvent = () => {
   return (
     <div className="bg-libuBlack min-h-screen">
       <Nav />
-
-      {connected ? (
+      <div className="min-h-screen">
         <Title text={'Crear coleccion'} />
-      ) : (
-        <Title text={'Conecta tu wallet :)'} />
-      )}
-      <div className="w-10/12 md:w-11/12 m-auto mb-10">
-        <div className="md:w-6/12">
-          {connected && <ContactUs address={address} />}
+        <div className="w-9/12 mx-auto mb-10">
+          <div className="">{connected && <ContactUs address={address} />}</div>
         </div>
       </div>
 

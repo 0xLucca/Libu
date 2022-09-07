@@ -8,6 +8,7 @@ module.exports = {
     extend: {
       colors: {
         libuGreen: '#51FDED',
+        libuGreen2: '#1A2E35',
         libuDarkPurple: '#260259',
         libuBlue: '#0090C1',
         libuBlack: '#363732',

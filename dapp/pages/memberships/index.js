@@ -17,7 +17,7 @@ export default function places() {
 
   const locksQuery = `
   query {
-    locks (first: 15) {
+    locks (first: 3) {
         address
         name
         tokenAddress
@@ -58,31 +58,24 @@ export default function places() {
       <div className="bg-libuBlack">
         <Nav />
         <Title text={'Memberships'} />
-        <div className="flex">
+
+        <div className="flex min-h-screen">
           <div
             className="
-          xl:w-11/12 
-          lg:w-10/12 
-          md:w-10/12 
-          sm:w-10/12 
-          w-10/12 
-          mx-auto 
-          grid
-          xl:grid-cols-6
-          lg:grid-cols-4
-          md:grid-cols-3
-          sm:grid-cols-3
-          grid-cols-2
-          "
+            w-9/12 
+            mx-auto 
+            grid
+            sm:grid-cols-2
+            lg:grid-cols-3
+            xl:grid-cols-4
+            gap-x-auto
+            "
           >
             {islocksList === true ? (
               <LoadingMembershipCard />
             ) : (
               locksList.map((nft) => (
-                <MembershipCard
-                  nft={nft}
-                  key={nft.tokenAddress}
-                />
+                <MembershipCard nft={nft} key={nft.tokenAddress} />
               ))
             )}
           </div>

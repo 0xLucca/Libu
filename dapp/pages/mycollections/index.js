@@ -9,11 +9,13 @@ import { ApolloClient, gql, InMemoryCache } from '@apollo/client';
 import MyCollectionCard from '../../components/collections/MyCollectionCard';
 import LoadingMembershipCard from '../../components/loading/LoadingMembershipCard';
 import QRmodal from '../../components/modal/QRmodal';
+import TransferModal from '../../components/modal/TransferModal';
 
 export default function places() {
   const { address, isConnected } = useAccount();
 
   const [showQR, setshowQR] = useState(false);
+  const [showTransfer, setshowTransfer] = useState(false);
   const [QRURL, setQRURL] = useState('');
   const [connected, setConnected] = useState(false);
   const [keysList, setKeysList] = useState([]);
@@ -69,39 +71,41 @@ export default function places() {
   };
 
   return (
-    <div className="bg-libuBlack min-h-screen ">
+    <div className="bg-libuBlack  ">
       <Nav />
-      {showQR && <QRmodal handleshowQR={handleshowQR} QRUrl={QRURL} />}
-      {connected ? (
-        <Title text={'Mis coleccionables'} />
-      ) : (
-        <Title text={'Conecta tu wallet :)'} />
-      )}
+      <div className="min-h-screen">
+        {showQR && <QRmodal handleshowQR={handleshowQR} QRUrl={QRURL} />}
+        {showTransfer && <TransferModal />}
+        {connected ? (
+          <Title text={'Mis coleccionables'} />
+        ) : (
+          <Title text={'Conecta tu wallet :)'} />
+        )}
 
-      <div className="flex">
-        <div
-          className="
-          xl:w-11/12 
-          lg:w-10/12 
-          md:w-10/12 
-          sm:w-10/12 
-          w-10/12 
-          mx-auto 
-          grid
-          xl:grid-cols-6
-          lg:grid-cols-4
-          md:grid-cols-3
-          sm:grid-cols-3
-          grid-cols-2
+        <div className="flex">
+          <div
+            className="
+            w-9/12 
+            mx-auto 
+            grid
+            sm:grid-cols-2
+            lg:grid-cols-3
+            xl:grid-cols-4
+            gap-x-auto
           "
-        >
-          {iskeysList ? (
-            <LoadingMembershipCard />
-          ) : (
-            keysList.map((nft) => (
-              <MyCollectionCard nft={nft} key={nft.keyId} handleQR={handleQR} />
-            ))
-          )}
+          >
+            {iskeysList ? (
+              <LoadingMembershipCard />
+            ) : (
+              keysList.map((nft) => (
+                <MyCollectionCard
+                  nft={nft}
+                  key={nft.keyId}
+                  handleQR={handleQR}
+                />
+              ))
+            )}
+          </div>
         </div>
       </div>
 

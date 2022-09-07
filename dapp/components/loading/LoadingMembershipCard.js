@@ -10,10 +10,19 @@ const LoadingMembershipCard = () => {
       className="
         animate-pulse
         select-none
-        mx-auto
         my-6
-        w-40
-        md:w-52
+        w-[280px]
+        h-[380px]
+        sm:w-[240px]
+        sm:h-[340px]
+        md:w-[280px]
+        md:h-[420px]
+        lg:w-[250px]
+        lg:h-[390px]
+        xl:w-[270px]
+        xl:h-[410px]
+        2xl:w-[290px]
+        2xl:h-[410px]
         rounded-lg 
         shadow-lg 
         duration-200 
@@ -24,19 +33,23 @@ const LoadingMembershipCard = () => {
         flex-col
         "
     >
-      <div className="">
-        <div className="h-44 md:h-52 bg-libuWhite3 mx-1 mt-1 rounded"></div>
-        <div className="mx-1 p-1">
-          <h3 className="text-lg font-bold font-inter text-libuBlack truncate">
-            A
-          </h3>
-          <p className="text-libuBlack font-sora break-all hidden md:block text-card-text leading-3 my-auto h-6 overflow-auto">
-            desc
-          </p>
-        </div>
-      </div>
+      <div
+        className="
+          w-[270px] 
+          h-[270px]
+          sm:w-[230px] 
+          sm:h-[230px]
+          md:w-[270px] 
+          md:h-[270px]
+          lg:w-[240px] 
+          lg:h-[240px]
+          xl:w-[260px] 
+          xl:h-[260px]
+          2xl:w-[280px] 
+          2xl:h-[280px] bg-libuWhite3 mx-1 mt-1 rounded"
+      ></div>
 
-      <div className="flex m-1">
+      <div className="flex mx-1 mb-1 mt-auto">
         <div
           className="
                   flex

@@ -42,8 +42,20 @@ const ticketDesc = () => {
   };
 
   return (
-    <div className="bg-libuBlack min-h-screen flex flex-col justify-between">
-      <Nav />
+    <div className="bg-libuBlack">
+      <div className="min-h-screen flex flex-col">
+        <Nav />
+        <MembershipDescription nft={thisNFT} />
+      </div>
+
+      <Footer />
+    </div>
+  );
+};
+
+export default ticketDesc;
+
+/*
       <Breadcrumb>
         <BreadcrumbItem href="/">Home</BreadcrumbItem>
         {breadcrumbs &&
@@ -57,11 +69,4 @@ const ticketDesc = () => {
             </BreadcrumbItem>
           ))}
       </Breadcrumb>
-
-      <MembershipDescription nft={thisNFT} />
-      <Footer />
-    </div>
-  );
-};
-
-export default ticketDesc;
+*/
