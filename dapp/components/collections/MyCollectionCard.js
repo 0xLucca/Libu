@@ -29,7 +29,7 @@ const MyCollectionCard = ({ nft, handleQR }) => {
   }, [signature]);
 
   useEffect(() => {
-    url != '' && handleQR(url, true);
+    url != '' && handleQR(url, true );
   }, [url]);
 
   //const { network } = useNetwork();
@@ -184,65 +184,4 @@ const MyCollectionCard = ({ nft, handleQR }) => {
 };
 
 export default MyCollectionCard;
-/*
-    <div
-      className="
-        mx-auto
-        my-6
-        w-40
-        md:w-52
-        rounded-lg 
-        shadow-lg 
-        duration-200 
-        hover:drop-shadow-xl
-        border
-        border-libuGreen
-        flex
-        flex-col
-        "
-    >
-      <div className="h-fit">
-        {!showOptions ? (
-          <button
-            onClick={() => {
-              setShowOptions(!showOptions);
-            }}
-            className="absolute m-1 h-6 w-6 rounded bg-libuBlack border border-libuGreen hover:bg-libuGreen z-10"
-          ></button>
-        ) : (
-          <div
-            onMouseLeave={() => {
-              setShowOptions(!showOptions);
-            }}
-            className="absolute m-1 w-32 rounded bg-libuBlack border border-libuGreen z-10 flex flex-col"
-          >
-            <button
-              onClick={() => {
-                signMessage();
-              }}
-              className="mx-2 my-1 text-libuGreen font-sora text-sm text-start"
-            >
-              QR
-            </button>
-          </div>
-        )}
-        <div className="h-44 md:h-52 bg-libuWhite3 mx-1 mt-1 rounded relative">
-          <Image
-            layout="fill"
-            //src="data:image/gif;base64,R0…AAAALAAAAAABAAEAAAIBRAA7"
-            src={collectible.image}
-            decoding="async"
-            data-nimg="fill"
-          />
-        </div>
-        <div className="mx-1 p-1">
-          <h3 className="text-lg font-bold font-inter text-libuWhite truncate">
-            {collectible.name}
-          </h3>
-          <p className="text-libuWhite2 h-15 font-sora break-all hidden md:block text-card-text my-auto overflow-auto">
-            {collectible.description}
-          </p>
-        </div>
-      </div>
-    </div>
-    */
+
