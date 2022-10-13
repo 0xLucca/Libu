@@ -29,7 +29,7 @@ const MyCollectionCard = ({ nft, handleQR }) => {
   }, [signature]);
 
   useEffect(() => {
-    url != '' && handleQR(url, true );
+    url != '' && handleQR(url, true);
   }, [url]);
 
   //const { network } = useNetwork();
@@ -99,34 +99,30 @@ const MyCollectionCard = ({ nft, handleQR }) => {
 
   return (
     <div
-      className="
-      transition-all
-      select-none
-      my-6
-      w-[280px]
-      h-[380px]
-      sm:w-[240px]
-      sm:h-[340px]
-      md:w-[280px]
-      md:h-[420px]
-      lg:w-[250px]
-      lg:h-[390px]
-      xl:w-[270px]
-      xl:h-[410px]
-      2xl:w-[290px]
-      2xl:h-[410px]
-      rounded-lg 
-      shadow-lg 
-      duration-200 
-      hover:drop-shadow-xl
-      border
-      border-libuGreen
-      flex
-      flex-col
-      "
+      className="p-[2px] 
+    bg-libuGreen 
+    rounded-lg 
+    cursor-pointer
+    shadow-lg 
+    transition
+    duration-200 
+    hover:drop-shadow-xl
+    hover:bg-gradient-to-br
+    from-libuGreen
+    to-libuPink
+    "
     >
       <div
         className="
+      p-[5px]
+      rounded-lg 
+      flex
+      flex-col
+      bg-libuDarkGreen
+      "
+      >
+        <div
+          className="
         w-[270px] 
         h-[270px]
         sm:w-[230px] 
@@ -138,45 +134,58 @@ const MyCollectionCard = ({ nft, handleQR }) => {
         xl:w-[260px] 
         xl:h-[260px]
         2xl:w-[280px] 
-        2xl:h-[280px] 
-        bg-libuWhite 
-        mx-1 mt-1 
-        rounded
+        2xl:h-[280px]
+         bg-libuWhite 
+         rounded
         relative
         "
-      >
-        <Image
-          layout="fill"
-          //src="data:image/gif;base64,R0…AAAALAAAAAABAAEAAAIBRAA7"
-          src={collectible.image}
-          decoding="async"
-          data-nimg="fill"
-        />
-      </div>
-
-      <div className="mx-1 my-2 p-1">
-        <h3 className="text-xl font-bold font-sora text-libuWhite truncate">
-          {collectible.name}
-        </h3>
-        <p className="hidden md:block text-libuWhite2 font-sora break-all text-card-text leading-3 my-auto h-6 overflow-auto">
-          {collectible.description}
-        </p>
-      </div>
-
-      <div className="flex mx-1 mb-1 mt-auto">
-        <div
-          className="cursor-pointer hover:bg-libuBlue transition duration-200 w-10 rounded ml-1 h-10 bg-libuGreen flex text-3xl text-libuGreen2"
-          onClick={() => {}}
         >
-          <IoArrowRedoCircleOutline className="m-auto" />
+          <Image
+            layout="fill"
+            //src="data:image/gif;base64,R0…AAAALAAAAAABAAEAAAIBRAA7"
+            src={collectible.image}
+            decoding="async"
+            data-nimg="fill"
+          />
         </div>
+
         <div
-          className="cursor-pointer hover:bg-libuBlue transition duration-200 w-10 rounded ml-1 h-10 bg-libuGreen flex text-3xl text-libuGreen2"
-          onClick={() => {
-            signMessage();
-          }}
+          className="my-2
+                w-[270px] libuWhite
+                sm:w-[230px] 
+                md:w-[270px] 
+                lg:w-[240px] 
+                xl:w-[260px] 
+                2xl:w-[280px] 
+        "
         >
-          <RiQrCodeLine className="m-auto" />
+          <h3 className="text-[24px] leading-none font-extrabold font-sora text-libuWhite truncate">
+            {collectible.name}
+          </h3>
+          <p className="mt-1 text-white font-sora break-all text-card-text leading-3 h-8 overflow-auto">
+            {collectible.description}
+          </p>
+        </div>
+
+        <div className="flex gap-2">
+          <button
+            className="transition duration-200 w-10 rounded h-10 bg-libuWhite flex text-3xl text-black       hover:bg-gradient-to-br
+      from-libuGreen
+      to-libuPink"
+            onClick={() => {}}
+          >
+            <IoArrowRedoCircleOutline className="m-auto" />
+          </button>
+          <button
+            className="transition duration-200 w-10 rounded h-10 bg-libuWhite flex text-3xl text-black       hover:bg-gradient-to-br
+      from-libuGreen
+      to-libuPink"
+            onClick={() => {
+              signMessage();
+            }}
+          >
+            <RiQrCodeLine className="m-auto" />
+          </button>
         </div>
       </div>
     </div>
@@ -184,4 +193,3 @@ const MyCollectionCard = ({ nft, handleQR }) => {
 };
 
 export default MyCollectionCard;
-

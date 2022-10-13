@@ -71,29 +71,24 @@ export default function places() {
   };
 
   return (
-    <div className="bg-libuBlack  ">
+    <div className="bg-black selection:bg-libuGreen selection:text-libuDarkGreen">
       <Nav />
-      <div className="min-h-screen">
+      <div className="min-h-screen w-8/12 m-auto mt-20 pt-[85px]">
         {showQR && <QRmodal handleshowQR={handleshowQR} QRUrl={QRURL} />}
         {showTransfer && <TransferModal />}
         {connected ? (
-          <Title text={'Mis coleccionables'} />
+          <Title text={'Mi coleccion'} />
         ) : (
           <Title text={'Conecta tu wallet :)'} />
         )}
+        <div className="mb-[50px] mt-[30px] flex font-sora font-bold text-[20px] text-black leading-none">
+          <div className="rounded-full bg-gradient-to-br from-libuGreen to-libuPink py-[8px] px-[25px] transition duration-150 cursor-pointer hover:bg-libuGreen">
+            membresias
+          </div>
+        </div>
 
         <div className="flex">
-          <div
-            className="
-            w-9/12 
-            mx-auto 
-            grid
-            sm:grid-cols-2
-            lg:grid-cols-3
-            xl:grid-cols-4
-            gap-x-auto
-          "
-          >
+          <div className="w-full h-fit flex gap-5">
             {iskeysList ? (
               <LoadingMembershipCard />
             ) : (

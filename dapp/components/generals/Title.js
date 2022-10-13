@@ -4,14 +4,13 @@ const Title = ({ text }) => {
   return (
     <p
       className=" 
-        w-9/12 
-        mx-auto
-        my-7
+        w-full
         font-inter
-        font-bold
+        font-black
         text-white
-        text-4xl 
-        lg:text-5xl
+        text-[64px]
+        uppercase
+        leading-none
         "
     >
       {text}

@@ -49,39 +49,25 @@ export default function places() {
       });
   }, []);
 
-  const showTheQRModal = (showQr) => {
-    console.log('se deveria mostrar que es: ', showQr);
-  };
-
   return (
-    <>
-      <div className="bg-libuBlack">
-        <Nav />
-        <Title text={'Memberships'} />
-
-        <div className="flex min-h-screen">
-          <div
-            className="
-            w-9/12 
-            mx-auto 
-            grid
-            sm:grid-cols-2
-            lg:grid-cols-3
-            xl:grid-cols-4
-            gap-x-auto
-            "
-          >
-            {islocksList === true ? (
-              <LoadingMembershipCard />
-            ) : (
-              locksList.map((nft) => (
-                <MembershipCard nft={nft} key={nft.tokenAddress} />
-              ))
-            )}
-          </div>
+    <div className="bg-black selection:bg-libuGreen selection:text-libuDarkGreen">
+      <Nav />
+      <div className="min-h-screen w-8/12 m-auto mt-20 pt-[85px]">
+        <Title text={'explorar'} />
+        <div className="w-full h-fit flex gap-5">
+          {islocksList === true ? (
+            <LoadingMembershipCard />
+          ) : (
+            locksList.map((nft) => (
+              <MembershipCard nft={nft} key={nft.tokenAddress} />
+            ))
+          )}
         </div>
-        <Footer />
       </div>
-    </>
+      <Footer />
+    </div>
   );
 }
+
+/*
+ */

@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import logoNegative from '../../assets/imgs/logoNegative.png';
+import logo from '../../assets/imgs/logo.png';
 import Image from 'next/image';
 import { FaInstagram } from 'react-icons/fa';
 import { BsTwitter } from 'react-icons/bs';
@@ -10,7 +10,7 @@ const Footer = () => {
   return (
     <div
       className="p-8 
-    bg-libuGreen2
+    bg-libuDarkGreen
     z-40 
     relative
     flex
@@ -23,7 +23,7 @@ const Footer = () => {
         <div className="w-14 my-auto cursor-pointer">
           <Link href="/">
             <a className="w-14 h-16">
-              <Image src={logoNegative} alt="logo" />
+              <Image src={logo} alt="logo" />
             </a>
           </Link>
         </div>

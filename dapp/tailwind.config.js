@@ -7,14 +7,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        black: '#141D20',
+        libuPink: '#FE6BC2',
         libuGreen: '#51FDED',
-        libuGreen2: '#1A2E35',
-        libuDarkPurple: '#260259',
-        libuBlue: '#0090C1',
-        libuBlack: '#363732',
         libuWhite: '#FCF7F8',
-        libuWhite2: '#DDDDDD',
-        libuWhite3: '#575850',
+        libuDarkGreen: '#1A2E35',
+        libuDark: '#363732',
       },
       height: {
         142: '42rem',

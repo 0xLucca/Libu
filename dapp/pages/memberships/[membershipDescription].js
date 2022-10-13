@@ -42,12 +42,11 @@ const ticketDesc = () => {
   };
 
   return (
-    <div className="bg-libuBlack">
-      <div className="min-h-screen flex flex-col">
-        <Nav />
+    <div className="bg-black">
+      <Nav />
+      <div className="min-h-screen w-8/12 m-auto mt-20 pt-[85px]">
         <MembershipDescription nft={thisNFT} />
       </div>
-
       <Footer />
     </div>
   );
