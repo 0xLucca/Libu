@@ -52,9 +52,9 @@ export default function places() {
   return (
     <div className="bg-black selection:bg-libuGreen selection:text-libuDarkGreen">
       <Nav />
-      <div className="min-h-screen w-8/12 m-auto mt-20 pt-[85px]">
+      <div className="min-h-screen w-10/12 lg:w-8/12 m-auto mt-20 pt-[85px]">
         <Title text={'explorar'} />
-        <div className="w-full h-fit flex gap-5">
+        <div className="w-full h-fit gap-5 grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1">
           {islocksList === true ? (
             <LoadingMembershipCard />
           ) : (

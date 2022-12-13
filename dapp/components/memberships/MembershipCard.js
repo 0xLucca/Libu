@@ -8,7 +8,8 @@ const MembershipCard = ({ nft }) => {
   console.log(nft);
   return (
     <div
-      className="p-[2px] 
+      className="
+      p-[2px] 
       bg-libuGreen 
       rounded-lg 
       cursor-pointer
@@ -19,6 +20,9 @@ const MembershipCard = ({ nft }) => {
       hover:bg-gradient-to-br
       from-libuGreen
       to-libuPink
+      w-fit
+      m-auto
+      md:m-0
       "
     >
       <div
@@ -44,10 +48,6 @@ const MembershipCard = ({ nft }) => {
           md:h-[270px]
           lg:w-[240px] 
           lg:h-[240px]
-          xl:w-[260px] 
-          xl:h-[260px]
-          2xl:w-[280px] 
-          2xl:h-[280px]
            bg-libuWhite 
            rounded
            "
@@ -61,8 +61,7 @@ const MembershipCard = ({ nft }) => {
               sm:w-[230px] 
               md:w-[270px] 
               lg:w-[240px] 
-              xl:w-[260px] 
-              2xl:w-[280px] 
+
             "
             >
               <h3 className="text-[24px] leading-none font-extrabold font-sora text-libuWhite truncate">
@@ -82,7 +81,10 @@ const MembershipCard = ({ nft }) => {
                   rounded
                   bg-white
                   h-[40px]
-                  w-full
+                  w-[270px] 
+                  sm:w-[230px] 
+                  md:w-[270px] 
+                  lg:w-[240px] 
                   text-black
                   font-sora
                   font-semibold

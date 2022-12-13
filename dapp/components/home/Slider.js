@@ -23,7 +23,7 @@ const Slider = ({ stateSlider, handleSlide }) => {
   }, [stateSlider]);
 
   return (
-    <div id="heroInfo" className="h-screen -mt-36 w-8/12 m-auto">
+    <div id="heroInfo" className="h-screen -mt-36 w-11/12 lg:w-8/12 m-auto">
       <div className="h-1/6 flex justify-between font-sora text-libuWhite text-sm md:text-lg">
         <a
           href="#heroInfo"

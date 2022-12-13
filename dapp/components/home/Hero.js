@@ -13,7 +13,7 @@ const Hero = () => {
           Un ecosistema web3 para tu empresa
         </p>
       </div>
-      <div className="w-full my-auto">
+      <div className="w-full my-auto hidden lg:block">
         <Image src={img1} alt="img hero"></Image>
       </div>
     </div>
